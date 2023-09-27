@@ -1,0 +1,21 @@
+!to create a new migration file
+
+npm run migration:create --name your_migration_file_name
+
+
+
+!to run migration file
+npm run migration:run
+
+
+
+
+"typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli -d dist/database/typeorm.config.js",
+    "migration:run": "npm run build && npm run typeorm -- migration:run",
+    "migration:create": "cross-var ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli migration:create ./src/migrations/$npm_config_name",
+    "migration:generate": "cross-var npm run typeorm -- migration:generate ./src/migrations/$npm_config_name",
+    "migration:revert": "npm run typeorm -- migration:revert"
+
+
+
+    make sure in your migration file the class name should be your file name
