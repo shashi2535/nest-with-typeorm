@@ -10,6 +10,12 @@ export class User {
   @Column()
   user_uuid: string;
   @Column()
+  password: string;
+  @Column()
+  public_id: string;
+  @Column()
+  avtar: string;
+  @Column()
   created_at: Date;
   @Column()
   updated_at: Date;

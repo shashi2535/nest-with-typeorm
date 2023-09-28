@@ -8,4 +8,24 @@ export class UserCreateDto {
   @IsEmail()
   @IsNotEmpty()
   email: string;
+  @IsString()
+  @MinLength(3)
+  @IsNotEmpty()
+  password: string;
+}
+
+export class LoginDto {
+  @IsEmail()
+  @IsNotEmpty()
+  email: string;
+  @IsString()
+  @MinLength(3)
+  @IsNotEmpty()
+  password: string;
+}
+
+export class UpdateUseProfileDto {
+  @IsNotEmpty()
+  @IsString()
+  first_name: string;
 }
