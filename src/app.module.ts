@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
-import { UserModule } from './users/user.module';
+import { UserModule } from './users/';
+import { TodoModule } from './todo';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import typeorm from './database/typeorm.config';
@@ -12,6 +13,7 @@ import typeorm from './database/typeorm.config';
         configService.get('typeorm'),
     }),
     UserModule,
+    TodoModule,
   ],
   controllers: [],
   providers: [],

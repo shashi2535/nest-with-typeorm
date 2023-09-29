@@ -11,6 +11,7 @@ import { v4 as uuid } from 'uuid';
 import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { CloudinaryService } from 'src/services/cloudinary/cloudinary.service';
+import { HttpStatus } from 'src/constant';
 
 @Injectable()
 export class UserService {
@@ -41,11 +42,15 @@ export class UserService {
         password: hash,
         avtar: uploadedFile.secure_url,
         public_id: uploadedFile.public_id,
+        role: userDto.email === 'admin@yopmail.com' ? 'admin' : 'user',
       });
       const userData = await this.userRepository.save(userCreateData);
       return { message: 'User Created Successfully.', data: userData };
     } catch (err) {
-      return { message: err.message, statusCode: 500 };
+      return {
+        message: err.message,
+        statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+      };
     }
   }
   async login(userDto: LoginDto) {
