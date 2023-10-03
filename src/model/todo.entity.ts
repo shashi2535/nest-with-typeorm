@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { User } from './user.entity';
 @Entity({ name: 'todo' })
 export class Todo {
   @PrimaryGeneratedColumn()
@@ -6,21 +13,12 @@ export class Todo {
   @Column()
   title: string;
   @Column()
-  first_name: string;
+  description: string;
   @Column()
-  user_uuid: string;
-  @Column()
-  password: string;
-  @Column()
-  public_id: string;
-  @Column({
-    enum: ['user', 'admin'],
-    type: 'enum',
-    enumName: 'role_enum_type',
-  })
-  role: string;
-  @Column()
-  avtar: string;
+  todo_uuid: string;
+  @OneToOne(() => User)
+  @JoinColumn({ name: 'user_id' })
+  users_todo: User;
   @Column()
   created_at: Date;
   @Column()
